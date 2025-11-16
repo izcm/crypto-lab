@@ -1,12 +1,49 @@
-/// Computes the multiplicative order of `n` modulo prime `p`.
-///
-/// Algorithm:
-/// 1. Let m = p - 1 (because the group (Z/pZ)* has size p-1).
-/// 2. Factorize m.
-/// 3. For each prime factor q of m:
-///    - If n^(m / q) ≡ 1 (mod p), then the order divides m / q.
-///      Continue dividing out q as long as the congruence remains 1.
-/// 4. The smallest divisor d of m for which n^d ≡ 1 (mod p) is the order.
-/// 5. If the order is p - 1, then n is a primitive root modulo p.
+use crate::number_theory::factors::factors::prime_factors;
+use crate::number_theory::factors::gcd::gcd;
+use crate::number_theory::factors::is_prime::is_prime;
+use crate::number_theory::factors::mod_power::mod_pow;
 
-// pub fn order(n: )
+/// Computes the multiplicative order of `a` modulo `m`.
+///
+/// The order is the smallest `k` such that a^k ≡ 1 (mod m).
+/// Requires gcd(a, m) = 1.
+///
+/// Steps:
+/// - let group_size = (m - 1) if m is prime, else φ(m)
+/// - factor group_size
+/// - start with k = group_size
+/// - for each prime factor q: while a^(d/q) ≡ 1 (mod m), set d = d / q
+/// - return k
+///
+/// note: if order = group_size => `a` is a primitive root mod m
+
+pub fn order(a: u64, m: u64) -> u64 {
+    // order only exists if a is in the unit group mod m
+    if gcd(a as i64, m as i64) != 1 {
+        return 0; // a is not coprime
+    }
+
+    // 2. decide group size
+    let mut g = if is_prime(m) {
+        m - 1
+    } else {
+        // TODO: implement phi
+        0
+    };
+
+    // 3. get prime factors of g
+    let factors = prime_factors(g);
+
+    // 4.
+    for q in factors {
+        while g % q == 0 {
+            if mod_pow(a, g / q, m) == 1 {
+                g /= q;
+            } else {
+                break;
+            }
+        }
+    }
+
+    g // in rust last expression in a function is auto returned if we don't put a semicolon
+}

@@ -8,7 +8,7 @@
 /// - `modulus`: the modulo value
 /// - `base`: the base number
 /// - `exp`: the exponent
-pub fn mod_pow(modulus: u64, base: u64, exp: u64) -> u64 {
+pub fn mod_pow(base: u64, exp: u64, modulus: u64) -> u64 {
     assert!(modulus > 0, "modulus cannot be zero"); // avoid division by zero
 
     if modulus == 1 {
