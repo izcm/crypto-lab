@@ -2,22 +2,25 @@ use crate::number_theory::factors::gcd::extended_gcd;
 use crate::number_theory::factors::is_prime::is_prime;
 use crate::number_theory::factors::mod_power::mod_pow;
 
-pub fn inverse(a: i64, m: i64) -> Option<i64> {
+pub fn inverse(a: u64, m: u64) -> Option<u64> {
     if is_prime(m) {
-        Some(mod_pow(m, a, m - 2))
+        Some(mod_pow(a, m - 2, m))
     } else {
         inverse_by_extended_euclidean(a, m)
     }
 }
 
-pub fn inverse_by_extended_euclidean(a: i64, m: i64) -> Option<i64> {
-    let (g, u, _) = extended_gcd(a, m);
+pub fn inverse_by_extended_euclidean(a: u64, m: u64) -> Option<u64> {
+    let (g, u, _) = extended_gcd(a as i64, m as i64);
 
     if g != 1 {
         return None; // inverse does NOT exist
     }
 
-    // Normalize u into the modular range
-    let inv = (u % m + m) % m;
-    Some(inv)
+    let m_i = m as i64;
+
+    // normalize negative u
+    let inv_i = ((u % m_i) + m_i) % m_i;
+
+    Some(inv_i as u64)
 }

@@ -22,8 +22,8 @@ pub fn run() {
                 println!("ord_{}({}) = {}", p, n, ord_p::ord_p(n, p));
             }
             "3" => {
-                let a: i64 = ask("a = ").parse().unwrap_or(0);
-                let p: i64 = ask("p = ").parse().unwrap_or(0);
+                let a: u64 = ask("a = ").parse().unwrap_or(0);
+                let p: u64 = ask("p = ").parse().unwrap_or(0);
                 match inverse(a, p) {
                     Some(inv) => println!("{}⁻¹ mod {} = {}", a, p, inv),
                     None => println!("No inverse exists because gcd({}, {}) ≠ 1", a, p),

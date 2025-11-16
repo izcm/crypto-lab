@@ -8,13 +8,15 @@
 /// - `modulus`: the modulo value
 /// - `base`: the base number
 /// - `exp`: the exponent
-pub fn mod_pow(modulus: i64, base: i64, exp: i64) -> i64 {
-    if modulus == 0 {
-        return -1; // avoid division by zero
+pub fn mod_pow(modulus: u64, base: u64, exp: u64) -> u64 {
+    assert!(modulus > 0, "modulus cannot be zero"); // avoid division by zero
+
+    if modulus == 1 {
+        return 0;
     }
 
-    let mut result: i64 = 1; // keeps track of result
-    let mut b = mod_wrap(base, modulus); // current power
+    let mut result: u64 = 1; // keeps track of result
+    let mut b = base % modulus; // current power
     let mut e = exp; // exponent
 
     // process the exponents bit one by one
@@ -29,10 +31,4 @@ pub fn mod_pow(modulus: i64, base: i64, exp: i64) -> i64 {
     }
 
     result
-}
-
-/// Wraps negative remainders into [0, modulus) range.
-fn mod_wrap(x: i64, m: i64) -> i64 {
-    let r = x % m;
-    if r < 0 { r + m } else { r }
 }
