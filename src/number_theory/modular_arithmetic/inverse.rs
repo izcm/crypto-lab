@@ -4,7 +4,7 @@ use crate::number_theory::factors::mod_power::mod_pow;
 
 pub fn inverse(a: u64, m: u64) -> Option<u64> {
     if is_prime(m) {
-        Some(mod_pow(a, m - 2, m))
+        Some(mod_pow(m, a - 2, m - 2))
     } else {
         inverse_by_extended_euclidean(a, m)
     }
