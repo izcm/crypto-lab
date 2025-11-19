@@ -1,13 +1,15 @@
 use crate::number_theory::factors::{gcd, ord_p};
-use crate::number_theory::modular_arithmetic::inverse::inverse;
+use crate::number_theory::modular_arithmetic::{inverse, order};
+
 use std::io::{self, Write};
 
 pub fn run() {
     loop {
         println!("\n=== 🧮 Number Theory ===");
         println!("1) Extended gcd(a, b)");
-        println!("2) Compute ord_p(n, p)");
-        println!("3) Compute modular inverse");
+        println!("2) Ord_p(n, p)");
+        println!("3) Modular inverse");
+        println!("4) Multiplicative order");
 
         match ask("👉 Enter your choice (or type 'exit') ").trim() {
             "1" => {
@@ -24,10 +26,16 @@ pub fn run() {
             "3" => {
                 let a: u64 = ask("a = ").parse().unwrap_or(0);
                 let p: u64 = ask("p = ").parse().unwrap_or(0);
-                match inverse(a, p) {
+                match inverse::inverse(a, p) {
                     Some(inv) => println!("{}⁻¹ mod {} = {}", a, p, inv),
                     None => println!("No inverse exists because gcd({}, {}) ≠ 1", a, p),
                 }
+            }
+            "4" => {
+                let a: u64 = ask("order of = ").parse().unwrap_or(0);
+                let m: u64 = ask("mod = ").parse().unwrap_or(0);
+                let o = order::order(a, m);
+                println!("order = {}", o);
             }
             "exit" => {
                 println!("💅 bye.");

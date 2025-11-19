@@ -1,4 +1,3 @@
-use crate::number_theory::factors::factors::prime_factors;
 use crate::number_theory::factors::gcd::gcd;
 use crate::number_theory::factors::is_prime::is_prime;
 use crate::number_theory::factors::mod_power::mod_pow;
@@ -46,4 +45,25 @@ pub fn order(a: u64, m: u64) -> u64 {
     }
 
     g // in rust last expression in a function is auto returned if we don't put a semicolon
+}
+
+pub fn prime_factors(mut n: u64) -> Vec<u64> {
+    let mut factors = Vec::new();
+    let mut p = 2;
+
+    while p * p <= n {
+        if n % p == 0 {
+            factors.push(p);
+            while n % p == 0 {
+                n /= p;
+            }
+        }
+        p += 1;
+    }
+
+    if n > 1 {
+        factors.push(n);
+    }
+
+    factors
 }

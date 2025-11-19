@@ -1,6 +1,6 @@
 /// Efficient approach to computing factors of a number.
 /// Time Complexity: O( sqrt(n) )
-pub fn prime_factors(number: u64) -> Vec<u64> {
+pub fn divisors(number: u64) -> Vec<u64> {
     // Initialize factors Vector
     let mut factors: Vec<u64> = Vec::new();
 
@@ -31,7 +31,7 @@ pub fn prime_factors(number: u64) -> Vec<u64> {
 
 /// Naive approach to computing factors of a number.
 /// Time Complexity: O(n)
-fn prime_factors_naive(number: u64) -> Vec<u64> {
+fn divisors_naive(number: u64) -> Vec<u64> {
     // Initialize factors Vector
     let mut factors: Vec<u64> = Vec::new();
 
