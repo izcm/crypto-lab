@@ -21,12 +21,12 @@ pub fn run() {
             "2" => {
                 let n: u64 = ask("n = ").parse().unwrap_or(0);
                 let p: u64 = ask("p = ").parse().unwrap_or(0);
-                println!("ord_{}({}) = {}", p, n, ord_p::ord_p(n, p));
+                println!("ord_{}({}) = {}", p, n, ord_p(n, p));
             }
             "3" => {
                 let a: u64 = ask("a = ").parse().unwrap_or(0);
                 let p: u64 = ask("p = ").parse().unwrap_or(0);
-                match inverse::inverse(a, p) {
+                match inverse(a, p) {
                     Some(inv) => println!("{}⁻¹ mod {} = {}", a, p, inv),
                     None => println!("No inverse exists because gcd({}, {}) ≠ 1", a, p),
                 }
@@ -34,7 +34,7 @@ pub fn run() {
             "4" => {
                 let a: u64 = ask("order of = ").parse().unwrap_or(0);
                 let m: u64 = ask("mod = ").parse().unwrap_or(0);
-                let o = order::order(a, m);
+                let o = order(a, m);
                 println!("order = {}", o);
             }
             "exit" => {

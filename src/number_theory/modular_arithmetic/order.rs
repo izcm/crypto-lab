@@ -1,6 +1,6 @@
+use super::mod_pow;
 use crate::number_theory::factors::gcd::gcd;
 use crate::number_theory::factors::is_prime::is_prime;
-use crate::number_theory::factors::mod_power::mod_pow;
 
 /// Computes the multiplicative order of `a` modulo `m`.
 ///
