@@ -1,9 +1,9 @@
-use super::mod_pow;
-
 use crate::number_theory::basic::factors::prime_factors;
 use crate::number_theory::basic::gcd::gcd;
 use crate::number_theory::basic::is_prime;
 use crate::number_theory::basic::phi;
+
+use super::mod_pow;
 
 /// Computes the multiplicative order of `a` modulo `m`.
 ///
