@@ -1,6 +1,27 @@
+pub fn prime_factors(mut n: u64) -> Vec<u64> {
+    let mut factors = Vec::new();
+    let mut p = 2;
+
+    while p * p <= n {
+        if n % p == 0 {
+            factors.push(p);
+            while n % p == 0 {
+                n /= p; // divides out all powers of p
+            }
+        }
+        p += 1;
+    }
+
+    if n > 1 {
+        factors.push(n);
+    }
+
+    factors
+}
+
 /// Efficient approach to computing factors of a number.
 /// Time Complexity: O( sqrt(n) )
-pub fn divisors(number: u64) -> Vec<u64> {
+pub fn factors(number: u64) -> Vec<u64> {
     // Initialize factors Vector
     let mut factors: Vec<u64> = Vec::new();
 
@@ -22,7 +43,6 @@ pub fn divisors(number: u64) -> Vec<u64> {
     // It is generally useful to sort the vector
     // And it will not affect our time complexity,
     // Because logarithmic time is much less than square root time complexity
-
     factors.sort();
 
     // Return the factors Vector as answer
@@ -31,7 +51,7 @@ pub fn divisors(number: u64) -> Vec<u64> {
 
 /// Naive approach to computing factors of a number.
 /// Time Complexity: O(n)
-fn divisors_naive(number: u64) -> Vec<u64> {
+fn factors_naive(number: u64) -> Vec<u64> {
     // Initialize factors Vector
     let mut factors: Vec<u64> = Vec::new();
 

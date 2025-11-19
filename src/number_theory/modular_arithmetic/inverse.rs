@@ -1,6 +1,6 @@
 use super::mod_pow;
-use crate::number_theory::factors::gcd::extended_gcd;
-use crate::number_theory::factors::is_prime::is_prime;
+use crate::number_theory::basic::gcd::extended_gcd;
+use crate::number_theory::basic::is_prime::is_prime;
 
 pub fn inverse(a: u64, m: u64) -> Option<u64> {
     if is_prime(m) {

@@ -1,4 +1,4 @@
-use crate::number_theory::factors::{gcd, ord_p};
+use crate::number_theory::basic::{gcd, ord_p};
 use crate::number_theory::modular_arithmetic::{inverse, order};
 
 use std::io::{self, Write};
