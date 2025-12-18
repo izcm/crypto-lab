@@ -29,7 +29,6 @@ pub fn order(a: u64, m: u64) -> u64 {
     let mut g = if is_prime(m) {
         m - 1
     } else {
-        // TODO: implement phi
         phi(m)
     };
 
