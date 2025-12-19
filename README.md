@@ -1,17 +1,27 @@
-# 🔐 crypto-lab
+# crypto-lab
 
-A small Rust project for practicing basic cryptography concepts.
+Small Rust CLI playground for basic number theory routines and simple substitution ciphers.
 
-🧪 This is where I experiment with:
+## What it does
 
-- ✨ Caesar ciphers
-- ✨ Substitution methods
-- ✨ More encryption & decryption logic soon
+- Runs an interactive menu with two sections: number theory utilities and substitution ciphers.
+- Number theory: GCD and extended GCD, prime checks, Euler phi, ord_p, modular inverse (Fermat or extended Euclid), multiplicative order, and primitive roots for supported moduli.
+- Substitution ciphers: Caesar shift encrypt/decrypt that keeps non-letters as-is.
 
-🔧 Built with:
+## Run it
 
-- Rust 💻
-- Love 🩵
-- Chaos 😈
+```
+cargo run
+```
 
-> Not a serious crypto tool — just learning, exploring, and breaking things on purpose (sometimes).
+Follow the prompts to choose a section and enter inputs.
+
+## Project layout
+
+- src/main.rs: menu loop and screen handling.
+- src/number_theory: basic helpers plus modular arithmetic utilities (inverse, mod pow, order, primitive roots).
+- src/sub_cipher: menu and Caesar cipher solver.
+
+## Notes
+
+- Designed for learning, not production-grade cryptography.
